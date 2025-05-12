@@ -21,7 +21,8 @@ class TuringMachine:
         else: #direction == "LEFT"
             self.head -= 1
 
-    def run(self):
+    def run(self, tape):
+        self.tape = tape
         while True:
             if self.state == self.accept_state:
                 print("input accepted :)")
@@ -31,5 +32,10 @@ class TuringMachine:
                 break
             self.step()
 
+class MultiHeadTM(TuringMachine):
+    def __init__(self, transition_function, start_state, accept_state, reject_state, num_heads):
+        super().__init__(transition_function, start_state, accept_state, reject_state)
+        self.num_heads = num_heads
+        
 
 
